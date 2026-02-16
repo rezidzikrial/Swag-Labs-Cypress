@@ -1,0 +1,38 @@
+[
+    {
+        "scenario" : "Valid Login",
+        "username" : "standard_user",
+        "password" : "secret_sauce",
+        "expected" : "inventory"
+    },
+    {
+        "scenario" : "Invalid Login",
+        "username" : "locked_out_user",
+        "password" : "secret_sauce",
+        "expected" : "Epic sadface: Sorry, this user has been locked out."
+    },
+    {
+        "scenario" : "Valid Login",
+        "username" : "problem_user",
+        "password" : "secret_sauce",
+        "expected" : "inventory"
+    },
+    {
+        "scenario" : "Valid Login",
+        "username" : "performance_glitch_user",
+        "password" : "secret_sauce",
+        "expected" : "inventory"
+    },
+    {
+        "scenario" : "Valid Login",
+        "username" : "error_user",
+        "password" : "secret_sauce",
+        "expected" : "inventory"
+    },
+    {
+        "scenario" : "Valid Login",
+        "username" : "visual_user",
+        "password" : "secret_sauce",
+        "expected" : "inventory"
+    }
+]

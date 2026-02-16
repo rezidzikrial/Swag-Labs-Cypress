@@ -1,0 +1,55 @@
+[
+    {
+        "scenario" : "invalid username",
+        "username" : "wrongusn",
+        "password" : "secret_sauce",
+        "expected" : "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+        "scenario" : "invalid password",
+        "username" : "standard_user",
+        "password" : "wrongpass123",
+        "expected" : "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+        "scenario" : "invalid login with empty username",
+        "username" : "",
+        "password" : "secret_sauce",
+        "expected" : "Epic sadface: Username is required"
+    },
+    {
+        "scenario" : "invalid login with empty password",
+        "username" : "standard_user",
+        "password" : "",
+        "expected" : "Epic sadface: Password is required"
+    },
+    {
+        "scenario" : "invalid login with empty username and password",
+        "username" : "",
+        "password" : "",
+        "expected" : "Epic sadface: Username is required"
+    },
+    {
+        "scenario" : "invalid login with script injection",
+        "username" : "<script>alert(1)</script>",
+        "password" : "<script>alert(1)</script>",
+        "expected" : "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+        "scenario" : "invalid login with SQL injection",
+        "username" : "OR 1=1 --",
+        "password" : "OR 1=1 --",
+        "expected" : "Epic sadface: Username and password do not match any user in this service"
+    },
+    {
+        "scenario" : "invalid login with emoji",
+        "username" : "😊😊😊",
+        "password" : "😊😊😊",
+        "expected" : "Epic sadface: Username and password do not match any user in this service"
+    }
+    
+
+]
+
+
+    
