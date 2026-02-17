@@ -49,4 +49,18 @@ Cypress.Commands.add('loginPOM', (username, password) => {
 })
 
 
+Cypress.Commands.add('topBarValidate', () => {
+    cy.get("#react-burger-menu-btn").should('be.visible').and('exist')
+    cy.get(".app_logo").should('be.visible').and('exist')
+    Cypress.pageInventory.cartLink()
+
+})
+
+Cypress.Commands.add('footBarValidate', () => {
+    cy.get(".footer").should('be.visible').and('exist')
+    cy.get(".social>li").should('be.visible').and('exist').should('have.length', '3')
+    cy.get(".footer_copy").should('be.visible').and('exist').should('contain.text', '© 2026')
+
+})
+
 

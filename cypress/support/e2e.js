@@ -15,4 +15,11 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-const baseurl = 'https://www.saucedemo.com/'
+/// <reference types="cypress"/>
+import Inventory from "../PageObjects/inventoryPage";
+import Login from "../PageObjects/loginPage";
+import DetailsProduct from "../PageObjects/detailsProductPage";
+
+Cypress.pageInventory = new Inventory()
+Cypress.loginPage = new Login()
+Cypress.detailsProduct = new DetailsProduct()
