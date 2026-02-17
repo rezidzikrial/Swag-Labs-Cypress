@@ -1,23 +1,23 @@
 class Inventory {
 
 productList() {
-    return cy.get('.inventory_item').should('be.visible')
+    return cy.get('.inventory_item')
   }
 
   imgProduct() {
-    return cy.get('.inventory_item_img').should('be.visible')
+    return cy.get('.inventory_item_img')
   }
 
   nameProduct () {
-    return cy.get('.inventory_item_name ').should('be.visible')
+    return cy.get('.inventory_item_name ')
   }
 
   descProduct () {
-    return cy.get(".pricebar>.inventory_item_price").should('be.visible')
+    return cy.get(".inventory_item_desc")
   }
 
   productPrice() {
-    return cy.get(".inventory_item_price").should('be.visible')
+    return cy.get(".inventory_item_price")
   }
 
   addToCartButtons() {

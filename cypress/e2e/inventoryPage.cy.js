@@ -14,15 +14,11 @@ describe('Full page inventory', () => {
 
         loginPage.login(Cypress.env('username'), 
         Cypress.env("password") )
-
-        cy.topBarValidate()
-        cy.footBarValidate()
         
     })
 
     it('Product Page display', () => {
-        cy.get('.app_logo').should('exist')
-        .and('be.visible')
+  
         cy.topBarValidate()
         cy.footBarValidate()
         pageInventory.imgProduct()
@@ -38,11 +34,11 @@ describe('Full page inventory', () => {
     pageInventory.productList().each(($product) => {
       cy.wrap($product).within(() => {
         // pageInventory.productList()
-        pageInventory.imgProduct()
-        pageInventory.nameProduct()
-        pageInventory.descProduct()
-        pageInventory.productPrice()
-        pageInventory.addToCartButtons()
+        pageInventory.imgProduct().should('be.visible').and('exist')
+        pageInventory.nameProduct().find().should('be.visible').and('exist').should('have.text', 'Sauce Labs Backpack')
+        pageInventory.descProduct().should('be.visible').and('exist')
+        pageInventory.productPrice().should('be.visible').and('exist')
+        pageInventory.addToCartButtons().should('be.visible').and('exist')
       })
     })
   })
