@@ -23,25 +23,12 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import CheckoutStepOne from "../PageObjects/checkoutStep1";
 import Login from "../PageObjects/loginPage";
 
 Cypress.Commands.add('loginPOM', (username, password) => {
 
     const loginPage = new Login()
-
-        // loginPage.login(username, password)
-
-        // if(username && username.length > 0) {
-        //     loginPage.typeUsername(username)     
-        // }else{
-        //     loginPage.typeUsername(username)
-        // }
-
-        // if(password && password.length > 0) {
-        //     loginPage.typePassword(password)
-        // }else{
-        //     loginPage.typePassword(password)
-        // }
 
        loginPage.typeUsername(username)
        loginPage.typePassword(password)
@@ -60,7 +47,16 @@ Cypress.Commands.add('footBarValidate', () => {
     cy.get(".footer").should('be.visible').and('exist')
     cy.get(".social>li").should('be.visible').and('exist').should('have.length', '3')
     cy.get(".footer_copy").should('be.visible').and('exist').should('contain.text', '© 2026')
+})
 
+Cypress.Commands.add('inputFormCo', (firstName, lastName, codeZip) => {
+
+    const coForm = new CheckoutStepOne()
+
+       coForm.typeFirstName(firstName)
+       coForm.typeLastName(lastName)
+       coForm.typeCodeZip(codeZip)
+    //    coForm.continueCoButton().click()
 })
 
 

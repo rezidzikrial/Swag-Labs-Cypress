@@ -1,0 +1,38 @@
+[
+    {
+        "validScenario" : "valid form Checkout",
+        "firstName" : "nama awal",
+        "lastName"  : "nama akhir",
+        "codeZip"   : "999",
+        "expected"  : "checkout-step-two"
+    },
+    {
+        "scenario"  : "invalid form Checkout - empty first name",
+        "firstName" : "",
+        "lastName"  : "nama akhir",
+        "codeZip"   : "999",
+        "expected"  : "Error: First Name is required"
+    },
+    {
+        "scenario"  : "invalid form Checkout - empty last name",
+        "firstName" :"nama awal",
+        "lastName"  : "",
+        "codeZip"   : "999",
+        "expected"  : "Error: Last Name is required"
+    },
+    {
+        "scenario"  : "invalid form Checkout - empty zip Code name",
+        "firstName" : "nama awal",
+        "lastName"  : "nama akhir",
+        "codeZip"   : "",
+        "expected"  : "Error: Postal Code is required"
+    },
+    {
+        "scenario"  : "invalid form Checkout - empty form",
+        "firstName" : "",
+        "lastName"  : "",
+        "codeZip"   : "",
+        "expected"  : "Error: First Name is required"
+    }
+
+]

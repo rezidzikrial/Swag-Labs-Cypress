@@ -31,7 +31,7 @@ describe('Detail Product Page Test', () => {
 
         Cypress.pageInventory.addToCartButtons().click()
 
-        Cypress.pageInventory.cartBadge().should('have.length', '1')
+        Cypress.pageInventory.cartBadge().should('have.text', '1')
 
         Cypress.detailsProduct.removeCartButtons().should('be.visible').and('exist').should('have.text', 'Remove')
 
@@ -43,7 +43,7 @@ describe('Detail Product Page Test', () => {
 
         Cypress.pageInventory.addToCartButtons().click()
 
-        Cypress.pageInventory.cartBadge().should('have.length', '1')
+        Cypress.pageInventory.cartBadge().should('have.text', '1')
 
         Cypress.detailsProduct.removeCartButtons().should('be.visible').and('exist').should('have.text', 'Remove')
 

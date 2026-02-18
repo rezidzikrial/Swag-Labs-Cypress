@@ -20,8 +20,8 @@ productList() {
     return cy.get(".inventory_item_price")
   }
 
-  addToCartButtons() {
-    return cy.get('button[data-test^="add-to-cart"]')
+  addAndRemoveCartButtons() {
+    return cy.get('.pricebar')
   }
 
   cartBadge() {

@@ -21,12 +21,12 @@ describe('Full page inventory', () => {
   
         cy.topBarValidate()
         cy.footBarValidate()
-        pageInventory.imgProduct()
-        pageInventory.nameProduct()
-        pageInventory.descProduct()
-        pageInventory.productPrice()
-        pageInventory.addToCartButtons()
-        pageInventory.sortDropdown()
+        pageInventory.imgProduct().should('be.visible')
+        pageInventory.nameProduct().should('be.visible')
+        pageInventory.descProduct().should('be.visible')
+        pageInventory.productPrice().should('be.visible')
+        pageInventory.addAndRemoveCartButtons().should('be.visible')
+        pageInventory.sortDropdown().should('be.visible')
         cy.url().should('include', '/inventory.html')
     });
 
@@ -34,22 +34,39 @@ describe('Full page inventory', () => {
     pageInventory.productList().each(($product) => {
       cy.wrap($product).within(() => {
         // pageInventory.productList()
-        pageInventory.imgProduct().should('be.visible').and('exist')
-        pageInventory.nameProduct().find().should('be.visible').and('exist').should('have.text', 'Sauce Labs Backpack')
-        pageInventory.descProduct().should('be.visible').and('exist')
-        pageInventory.productPrice().should('be.visible').and('exist')
-        pageInventory.addToCartButtons().should('be.visible').and('exist')
+        pageInventory.imgProduct().should('be.visible').should('have.length.greaterThan', 0)
+        pageInventory.nameProduct().should('be.visible')
+        pageInventory.descProduct().should('be.visible')
+        pageInventory.productPrice().should('be.visible')
+        pageInventory.addAndRemoveCartButtons().should('be.visible')
       })
     })
   })
 
     it('Should Product can add to cart and update icon badge cart', ()=> {
 
-        pageInventory.addToCartButtons().first().click()
-        pageInventory.cartBadge().should('have.length', '1')  
+        pageInventory.productList().should('have.length.greaterThan', 0).and('exist')
+        pageInventory.addAndRemoveCartButtons()
+        .find("#add-to-cart-sauce-labs-backpack")
+        .click()
+        pageInventory.cartLink().should('be.visible')
+        pageInventory.cartBadge().should('have.text', '1')  
         cy.get("#remove-sauce-labs-backpack").should('be.visible').should('have.text', 'Remove')
     })
       
+    it('Should Product can remove from cart and update icon badge cart', ()=> {
+
+        pageInventory.productList().should('have.length.greaterThan', 0).and('exist')
+        pageInventory.addAndRemoveCartButtons()
+        .find("#add-to-cart-sauce-labs-backpack")
+        .click()
+        pageInventory.cartLink().should('be.visible')
+        pageInventory.cartBadge().should('have.text', '1')
+        pageInventory.addAndRemoveCartButtons().find("#remove-sauce-labs-backpack").should('be.visible').should('have.text', 'Remove').click()
+        pageInventory.cartBadge().should('not.exist')
+        
+
+    })
       
     it('Sorting Product Name A to Z', ()=> {
 
@@ -62,6 +79,7 @@ describe('Full page inventory', () => {
           const expectedNames = [...actualNames].sort()
 
           expect(actualNames).to.deep.equal(expectedNames)
+          expect(actualNames.length).to.be.greaterThan(1)
 
         })
         
@@ -70,6 +88,8 @@ describe('Full page inventory', () => {
     it('Sorting Product Name Z to A', ()=> {
 
       pageInventory.sortDropdown().select('za')
+      pageInventory.productList()
+      .should('have.length.greaterThan', 0)
         pageInventory.nameProduct().then((names)=> {
           const actualNames = [...names].map(el => 
             el.innerText.trim()
@@ -78,7 +98,7 @@ describe('Full page inventory', () => {
           const expectedNames = [...actualNames].sort().reverse()
 
           expect(actualNames).to.deep.equal(expectedNames)
-
+          expect(actualNames.length).to.be.greaterThan(1)
         })
         
     })
@@ -86,6 +106,9 @@ describe('Full page inventory', () => {
     it('Sorting Product Price Low to High', ()=> {
 
         pageInventory.sortDropdown().select('lohi')
+        pageInventory.productList()
+        .should('exist')
+        .and('have.length.greaterThan', 0)
           pageInventory.productPrice().then((prices)=> {
             const actualPrice = [...prices].map(el => 
               parseFloat(el.innerText.replace('$', ''))

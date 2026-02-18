@@ -19,7 +19,11 @@ import './commands'
 import Inventory from "../PageObjects/inventoryPage";
 import Login from "../PageObjects/loginPage";
 import DetailsProduct from "../PageObjects/detailsProductPage";
+import Keranjang from '../PageObjects/cartPage';
+import CheckoutStepOne from '../PageObjects/checkoutStep1';
 
-Cypress.pageInventory = new Inventory()
 Cypress.loginPage = new Login()
+Cypress.pageInventory = new Inventory()
 Cypress.detailsProduct = new DetailsProduct()
+Cypress.cartPage = new Keranjang()
+Cypress.coForm = new CheckoutStepOne()
