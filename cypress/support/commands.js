@@ -59,4 +59,27 @@ Cypress.Commands.add('inputFormCo', (firstName, lastName, codeZip) => {
     //    coForm.continueCoButton().click()
 })
 
+Cypress.Commands.add('completeCheckout', ()=> {
+     //login
+        cy.loginPOM(Cypress.env('username'), Cypress.env('password'))
+
+        //page inventorty
+        Cypress.pageInventory.addAndRemoveCartButtons().find('#add-to-cart-sauce-labs-backpack').click()
+        Cypress.pageInventory.addAndRemoveCartButtons().find('#add-to-cart-sauce-labs-bike-light').click()
+        Cypress.pageInventory.cartLink().click()
+
+        //page cart
+        Cypress.cartPage.checkoutButton().click()
+
+        //page form Checkout
+        cy.inputFormCo('rezi', 'alfa', '69')
+        Cypress.coForm.continueCoButton().click()
+
+        //page Checkout Detail
+        Cypress.detailCo.finishButton().click()
+
+        cy.topBarValidate()
+        cy.footBarValidate()
+})
+
 

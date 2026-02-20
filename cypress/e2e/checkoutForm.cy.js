@@ -1,4 +1,4 @@
-describe('Test Step one Checkout Information', () => {
+describe('Checkout Form - Step One Validation', () => {
 
     beforeEach(() => {
         cy.visit('/')

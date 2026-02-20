@@ -21,9 +21,13 @@ import Login from "../PageObjects/loginPage";
 import DetailsProduct from "../PageObjects/detailsProductPage";
 import Keranjang from '../PageObjects/cartPage';
 import CheckoutStepOne from '../PageObjects/checkoutStep1';
+import CheckoutStepTwo from '../PageObjects/checkoutStep2';
+import CompleteCo from '../PageObjects/completePage';
 
 Cypress.loginPage = new Login()
 Cypress.pageInventory = new Inventory()
 Cypress.detailsProduct = new DetailsProduct()
 Cypress.cartPage = new Keranjang()
 Cypress.coForm = new CheckoutStepOne()
+Cypress.detailCo = new CheckoutStepTwo()
+Cypress.completeCo = new CompleteCo()
