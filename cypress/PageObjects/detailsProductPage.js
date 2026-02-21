@@ -16,6 +16,10 @@ class DetailsProduct {
         return cy.get(".inventory_details_price")
     }
 
+    addToCart(){
+        return cy.get('#add-to-cart')
+    }
+
     removeCartButtons() {
     return cy.get('#remove')
   }

@@ -6,7 +6,7 @@ describe('Cart Testing', () => {
         cy.loginPOM(Cypress.env('username'), Cypress.env('password'))
     })
 
-    it.only('Cart Page Test validate element', () => {
+    it('Cart Page Test validate element', () => {
 
         Cypress.pageInventory.addAndRemoveCartButtons().find('#add-to-cart-sauce-labs-backpack').click()
 
@@ -23,14 +23,14 @@ describe('Cart Testing', () => {
         cy.topBarValidate()
         cy.footBarValidate()
 
-        Cypress.cartPage.title().should('be.visible').and('have.text', 'Your Cart')
-        Cypress.cartPage.qtyProduct.should('be.visible').and('have.text', 'QTY')
+        Cypress.cartPage.titleCart().should('be.visible').and('have.text', 'Your Cart')
+        Cypress.cartPage.qtyProduct().should('be.visible').and('have.text', 'QTY')
         cy.get('.cart_desc_label').should('be.visible').and('have.text', 'Description')
+        Cypress.cartPage.qtyProduct().should('be.visible')
 
         cy.get('.cart_item').each(($product)=> {
         cy.wrap($product).within(() => {
                 
-            Cypress.cartPage.qtyProduct().should('be.visible')
             Cypress.pageInventory.nameProduct().should('be.visible')
             Cypress.pageInventory.descProduct().should('be.visible')
             Cypress.pageInventory.productPrice().should('be.visible')
@@ -55,14 +55,15 @@ describe('Cart Testing', () => {
 
     it('add product to cart and Continue Shopping', ()=> {
 
-        Cypress.pageInventory.addAndRemoveCartButtons.find('#add-to-cart-sauce-labs-backpack').click()
+        Cypress.pageInventory.addAndRemoveCartButtons().find('#add-to-cart-sauce-labs-backpack').click()
         Cypress.pageInventory.cartBadge().should('have.text', '1')  
         Cypress.pageInventory.cartLink().click()
         cy.get('.cart_item').should('exist').should('be.visible')
         Cypress.cartPage.backShoppingButton().click()
         cy.url().should('include', 'inventory.html')
         Cypress.pageInventory.productList().should('exist')  
-        Cypress.pageInventory.cartBadge().should('not.exist')
+        Cypress.pageInventory.cartBadge().should('exist')
+        Cypress.pageInventory.cartLink().should('have.text', '1')
 
     })
 
@@ -81,8 +82,8 @@ describe('Cart Testing', () => {
     it('Negative test Click Checkout button with empty product in cart', {bug: ['empty products in cart but can checkout']}, ()=> {
 
         Cypress.pageInventory.cartLink().click()
-        Cypress.cartPage.checkoutButton().click()
-        cy.url().should('include', 'checkout-step-one.html')
+        Cypress.cartPage.checkoutButton().should('not.exist').click()
+        cy.url().should('include', 'cart')
         Cypress.coForm.titleCo().should('be.visible').and('have.text', 'Checkout: Your Information')
         cy.get('#checkout_info_container').should('exist')
     })

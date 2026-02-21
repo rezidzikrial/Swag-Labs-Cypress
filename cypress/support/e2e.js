@@ -23,6 +23,7 @@ import Keranjang from '../PageObjects/cartPage';
 import CheckoutStepOne from '../PageObjects/checkoutStep1';
 import CheckoutStepTwo from '../PageObjects/checkoutStep2';
 import CompleteCo from '../PageObjects/completePage';
+import 'cypress-mochawesome-reporter/register';
 
 Cypress.loginPage = new Login()
 Cypress.pageInventory = new Inventory()

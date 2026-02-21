@@ -36,7 +36,7 @@ describe('Test Detail Checkout Page', () => {
 
         cy.url().should('include', 'checkout-step-two.html')
 
-        cy.get('.inventory_item').each(($item, index) => {
+        cy.get('.cart_item').each(($item, index) => {
 
             cy.wrap($item).find('.inventory_item_name')
             .should('have.text', expectedProducts[index].name)

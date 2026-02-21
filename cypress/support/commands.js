@@ -25,6 +25,10 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import CheckoutStepOne from "../PageObjects/checkoutStep1";
 import Login from "../PageObjects/loginPage";
+import Inventory from "../PageObjects/inventoryPage";
+
+Cypress.pageInventory = new Inventory()
+
 
 Cypress.Commands.add('loginPOM', (username, password) => {
 

@@ -37,11 +37,12 @@ describe('Dashboard test', () => {
 describe('negative login test', () => {
 
     beforeEach(()=>{
-        cy.visit('/')
+        
     })
 
     it('login failed form validation invalid username', () => {
-
+        cy.visit('/')
+        
         //login dengan masukan field username salah dan password benar
         cy.get('[data-test="username"]').should('be.visible').type('invalid_username').should('have.value', ('invalid_username'));
         cy.get('[data-test="password"]').should('be.visible').type(Cypress.env('password')).should('have.value', Cypress.env('password'));
@@ -54,7 +55,7 @@ describe('negative login test', () => {
     });
 
     it('login failed form validation invalid password', () => {
-
+        cy.visit('/')
         //login dengan masukan field username benar dan password salah
         cy.get('[data-test="username"]').type(Cypress.env('username'));
         cy.get('[data-test="password"]').type('invlaid_password');
@@ -67,7 +68,7 @@ describe('negative login test', () => {
     });
 
     it('login failed form validation empty username', () => {
-
+        cy.visit('/')
         //login tanpa menginput username benar dan masukan password
         cy.get('[data-test="password"]').type('invlaid_password');
         cy.get('[data-test="login-button"]').click();
@@ -79,7 +80,7 @@ describe('negative login test', () => {
     });
 
     it('login failed form validation, empty password', () => {
-
+        cy.visit('/')
         //login dengan masukan username dan passwork kosong
         cy.get('[data-test="username"]').type(Cypress.env('username'));
         cy.get('[data-test="login-button"]').click();
@@ -91,7 +92,7 @@ describe('negative login test', () => {
     });
 
     it('login failed form validation with empty username and password', () => {
-
+        cy.visit('/')
         //login tanpa memasukan username dan password
         cy.get('[data-test="login-button"]').click();
 
@@ -102,7 +103,7 @@ describe('negative login test', () => {
     });
 
     it('login failed form validation with script injection', () => {
-
+        cy.visit('/')
         //login dengan menginput script injection
         cy.get('[data-test="username"]').type('<script>alert(1)</script>');
         cy.get('[data-test="password"]').type('<script>alert(1)</script>');
@@ -115,7 +116,7 @@ describe('negative login test', () => {
     });
 
     it('login failed form validation with SQL Injection', () => {
-
+        cy.visit('/')
         //login dengan menginput script injection
         cy.get('[data-test="username"]').type(' OR 1=1 --');
         cy.get('[data-test="password"]').type(' OR 1=1 --');
@@ -128,7 +129,7 @@ describe('negative login test', () => {
     });
 
     it('login failed form validation with Emoji', () => {
-
+        cy.visit('/')
         //login dengan menginput script injection
         cy.get('[data-test="username"]').type('😊😊😊');
         cy.get('[data-test="password"]').type('😊😊😊');
@@ -140,7 +141,7 @@ describe('negative login test', () => {
         cy.url().should('not.include', '/inventory.html')
     });
 
-    it('login failed with url dashboard', () => {
+    it('login failed with url dashboard', {bug: ['page not found']}, () => {
         //Masuk ke halaman url web sauce demo
         cy.visit('https://www.saucedemo.com/inventory/html');
 
@@ -149,17 +150,4 @@ describe('negative login test', () => {
         .should('contain', "You can only access '/inventory.html' when you are logged in.").should('be.visible')
         cy.url().should('not.include', '/inventory.html')
     });
-
-    it('Login negative UI Behavior ', () => {
-
-        cy.get('[data-test="login-button"]').click();
-
-        //validasi error
-        cy.get('.error-message-container').should('be.visible').should('have.text', 'Epic sadface: Username is required')
-        cy.url().should('not.include', '/inventory')
-        
-
-        
-    });
-
 });

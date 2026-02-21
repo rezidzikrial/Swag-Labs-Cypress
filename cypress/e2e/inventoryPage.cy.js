@@ -7,8 +7,6 @@ describe('Full page inventory', () => {
         cy.loginPOM(Cypress.env('username'), 
         Cypress.env("password"))
         cy.url().should('include', '/inventory.html')
-
-        
     })
 
     it('Product Page display', () => {
@@ -21,12 +19,11 @@ describe('Full page inventory', () => {
         Cypress.pageInventory.productPrice().should('be.visible')
         Cypress.pageInventory.addAndRemoveCartButtons().should('be.visible')
         Cypress.pageInventory.sortDropdown().should('be.visible')
-        cy.url().should('include', '/inventory.html')
     });
 
     it('each product should have name, description, price, image, and add to cart button', () => {
 
-    cy.fixture('detailsProduct').then((products)=> {
+    cy.fixture('detailsProduct', {bug: ['there is a name and desc bug on the product that does not match']}).then((products)=> {
 
         Cypress.pageInventory.productList().should('have.length', products.length)
 
@@ -36,22 +33,10 @@ describe('Full page inventory', () => {
             Cypress.pageInventory.nameProduct().should('have.text', products[index].name)//BUG nama tidak sesuai, ada typo di produk (Sauce T-shirt (Red) )
             Cypress.pageInventory.descProduct().should('have.text', products[index].desc)//BUG ada deskripsi tidak sesuai di produk "Sauce Labs Backpack"
             Cypress.pageInventory.productPrice().should('have.text', products[index].price)
-            // Cypress.pageInventory.imgProduct().should('have.text', products[index].img)
           })
         })
       })
     })
-  
-    // pageInventory.productList().each(($product) => {
-    //   cy.wrap($product).within(() => {
-    //     // pageInventory.productList()
-    //     pageInventory.imgProduct().should('be.visible').should('have.length.greaterThan', 0)
-    //     pageInventory.nameProduct().should('be.visible')
-    //     pageInventory.descProduct().should('be.visible')
-    //     pageInventory.productPrice().should('be.visible')
-    //     pageInventory.addAndRemoveCartButtons().should('be.visible')
-    //   })
-    // })
 
     it('Should Product can add to cart and update icon badge cart', ()=> {
 
@@ -66,7 +51,6 @@ describe('Full page inventory', () => {
       
     it('Should Product can remove from cart and update icon badge cart', ()=> {
 
-        Cypress.pageInventory.productList().should('have.length.greaterThan', 0).and('exist')
         Cypress.pageInventory.addAndRemoveCartButtons()
         .find("#add-to-cart-sauce-labs-backpack")
         .click()

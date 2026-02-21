@@ -21,7 +21,7 @@ describe('Detail Product Page Test', () => {
         Cypress.detailsProduct.detailImgProduct().should('be.visible')
         Cypress.detailsProduct.detailDescProduct().should('exist').and('be.visible')
         Cypress.detailsProduct.detailPriceProduct().should('exist').and('contain.text', '$29.99')
-        Cypress.pageInventory.addToCartButtons().should('be.visible').and('exist')
+        Cypress.detailsProduct.addToCart().should('be.visible').and('exist')
         cy.get('[data-test="back-to-products"]').should('be.visible').and('exist').should('have.text', 'Back to products')
       })
 
@@ -29,7 +29,7 @@ describe('Detail Product Page Test', () => {
 
         Cypress.pageInventory.productList().find("#item_0_title_link").click()
 
-        Cypress.pageInventory.addToCartButtons().click()
+        Cypress.detailsProduct.addToCart().click()
 
         Cypress.pageInventory.cartBadge().should('have.text', '1')
 
@@ -41,7 +41,7 @@ describe('Detail Product Page Test', () => {
 
         Cypress.pageInventory.productList().find("#item_0_title_link").click()
 
-        Cypress.pageInventory.addToCartButtons().click()
+        Cypress.detailsProduct.addToCart().click()
 
         Cypress.pageInventory.cartBadge().should('have.text', '1')
 

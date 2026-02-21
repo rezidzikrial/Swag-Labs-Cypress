@@ -12,6 +12,8 @@ describe('Checkout Form - Step One Validation', () => {
         cy.footBarValidate()
 
         Cypress.cartPage.checkoutButton().click()
+        Cypress.pageInventory.cartBadge().should('be.visible')
+        Cypress.pageInventory.cartBadge().should('have.text', '1')
     });
 
     it('Test Validate element Checkout Form ', () => {
@@ -43,7 +45,7 @@ describe('Checkout Form - Step One Validation', () => {
         })
     })
 
-    it.only('Test input form Check Out & click cancel', ()=> {
+    it('Test input form Check Out & click cancel', ()=> {
         
         cy.inputFormCo('rezi', 'alfa', '69')
         Cypress.coForm.inputFirstName().should('have.value', 'rezi')
