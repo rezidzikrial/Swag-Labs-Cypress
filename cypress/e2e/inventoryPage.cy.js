@@ -21,9 +21,9 @@ describe('Full page inventory', () => {
         Cypress.pageInventory.sortDropdown().should('be.visible')
     });
 
-    it('each product should have name, description, price, image, and add to cart button', () => {
+    it('each product should have name, description, price, image, and add to cart button',{bug: ['there is a name and desc bug on the product that does not match']}, () => {
 
-    cy.fixture('detailsProduct', {bug: ['there is a name and desc bug on the product that does not match']}).then((products)=> {
+    cy.fixture('detailsProduct', ).then((products)=> {
 
         Cypress.pageInventory.productList().should('have.length', products.length)
 
